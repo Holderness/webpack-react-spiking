@@ -22,8 +22,11 @@
 // });
 
 import React from 'react';
-import Note from './note.jsx';
+import { Note } from './note.jsx';
+import ReactDOM from 'react-dom'
 
-export default () => {
-  return <Note />;
-};
+// export default () => {
+//   return <Note />;
+// };
+
+// ReactDOM.render(<Note name="wolrd!" />, document.getElementById('app'));

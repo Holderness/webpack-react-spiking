@@ -9,10 +9,10 @@ module.exports = {
       'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/only-dev-server',
       "webpack/hot/dev-server",
-      "./public/js/entry.js",
+      path.resolve(__dirname, "./public/js/entry.js"),
     ],
     output: {
-        path: "/public/build/",
+        path: path.resolve(__dirname, "./public/build"),
         filename: "bundle.js",
         publicPath: "/public/build/"
     },
