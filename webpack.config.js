@@ -3,16 +3,18 @@ var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var path = require('path');
 
 module.exports = {
+    context: __dirname,
     watch: true,
     entry: [
-      'webpack-dev-server/client?http://localhost:3000',
+      'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/only-dev-server',
       "webpack/hot/dev-server",
-      "./entry.js",
+      "./public/js/entry.js",
     ],
     output: {
-        path: __dirname,
-        filename: "bundle.js"
+        path: "/public/build/",
+        filename: "bundle.js",
+        publicPath: "/public/build/"
     },
     module: {
         preLoaders: [
@@ -28,16 +30,10 @@ module.exports = {
               loader: "style-loader!css-loader!less-loader",
             },
             { 
-              test: /\.js$/, 
+              test: /\.jsx?$/, 
               exclude: /node_modules/, 
               loader: 'babel-loader',
-              query: {compact: false}
-            },
-            { 
-              test: /\.jsx$/, 
-              exclude: /node_modules/, 
-              loader: 'babel-loader',
-              query: {compact: false}
+              query: {presets: ['es2015', 'react'] }
             },
             { 
               test: /\.css$/, 
@@ -52,7 +48,7 @@ module.exports = {
     },
     plugins: [
         new BrowserSyncPlugin({
-            proxy: 'localhost:3000',
+            proxy: 'localhost:8080',
         },
         {
             callback: function () {

@@ -1,1 +1,0 @@
-module.exports = "It rowks from content.js";

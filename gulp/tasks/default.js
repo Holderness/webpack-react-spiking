@@ -18,9 +18,9 @@ gulp.task("default", ["webpack-dev-server"]);
 
 gulp.task("webpack", function(callback) {
     // run webpack
-    return gulp.src('./entry.js')
+    return gulp.src('../../public/js/entry.js')
     .pipe(stream(webpackConfig))
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('../../public/build/'));
 
 });
 
