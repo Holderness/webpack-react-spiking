@@ -18,6 +18,10 @@ import ReactDOM from 'react-dom';
 //   }
 // });
 
+
+
+
+
 export class Note extends React.Component {
   render() {
     return (
@@ -26,10 +30,7 @@ export class Note extends React.Component {
   }
 }
 
-export class NoteList extends React.Component {
-  renderAllNotes () {
-
-  }
+export class NoteList1 extends React.Component {
   render() {
     return (
       <div className="note-list">
@@ -40,13 +41,12 @@ export class NoteList extends React.Component {
   }
 }
 
-var note = { title: 'I\'m a bus!', content: 'Choo choo motherfucker!' }
-ReactDOM.render(<NoteList note={note} />, document.getElementById('list'))
+
+
+
+
 
 // React.render(<Note name="erisfafsa" />, document.getElementById('app'));
-
-
-
 
 
 // import React, { Component } from 'react';
@@ -58,3 +58,69 @@ ReactDOM.render(<NoteList note={note} />, document.getElementById('list'))
 //     );
 //   }
 // };
+
+
+
+
+
+
+var NoteSummary = React.createClass({
+  render: function () {
+    var note = this.props.note;
+    var title = note.content.substring(0,
+      note.content.indexOf('\n')
+    );
+    title = title || note.content;
+
+    return (
+      <div className="note-summary">{title}</div>
+    );
+  }
+});
+
+export var NoteList2 = React.createClass({
+  render: function() {
+    var notes = this.props.notepad.notes;
+
+    return (
+      <div className="note-list">
+      {
+        notes.map(function (note) {
+          return (
+            <NoteSummary key={note.id} note={note}/>
+          );
+        })
+      }
+      </div>
+    );
+  }
+});
+
+
+
+
+
+export var Counter = React.createClass({
+  incrementCount: function(){
+    this.setState({
+      count: this.state.count + 1
+    });
+  },
+  getInitialState: function(){
+     return {
+       count: 0
+     }
+  },
+  render: function(){
+    return (
+      <div className="my-component">
+        <h1 onClick={this.incrementCount}>Count: {this.state.count}</h1>
+        <button type="button" onClick={this.incrementCount}>Increment</button>
+      </div>
+    );
+  }
+});
+
+
+// module.exports = NotesList;
+// ReactDOM.render(<NotesList notepad={notepad} />, document.getElementById('app'));
